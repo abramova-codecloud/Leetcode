@@ -1,0 +1,37 @@
+class Solution {
+    public List<String> commonChars(String[] A) {
+        int d = 97;
+        List<String> res = new ArrayList<>();
+        int[] cats = new int[36];
+
+        for (int i = 0; i < A.length; i++) {
+            int[] cur = new int[36];
+            char[] a = A[i].toCharArray();
+
+            if (i == 0) {
+                for (char c : a) {
+                    cats[(int) c - d] = cats[(int) c - d] + 1;
+                }
+                continue;
+            }
+
+            for (char c : a) {
+                cur[(int) c - d] = cur[(int) c - d] + 1;
+            }
+
+            for (int j = 0; j <= 26; j++) {
+                if (cats[j] > cur[j]) {
+                    cats[j] = cur[j];
+                }
+            }
+        }
+
+        for (int i = 0; i <= 26; i++) {
+            while (cats[i] > 0) {
+                res.add(String.valueOf((char) (i + d)));
+                cats[i]--;
+            }
+        }
+        return res;
+    }
+}
