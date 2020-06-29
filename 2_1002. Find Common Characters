@@ -1,11 +1,12 @@
 class Solution {
     public List<String> commonChars(String[] A) {
-        int d = 97;
+        int d = (int)'a';
+        int l = (int)'z' - (int)'a' + 1;
         List<String> res = new ArrayList<>();
-        int[] cats = new int[36];
+        int[] cats = new int[l];
 
         for (int i = 0; i < A.length; i++) {
-            int[] cur = new int[36];
+            int[] cur = new int[l];
             char[] a = A[i].toCharArray();
 
             if (i == 0) {
@@ -19,18 +20,19 @@ class Solution {
                 cur[(int) c - d] = cur[(int) c - d] + 1;
             }
 
-            for (int j = 0; j <= 26; j++) {
+            for (int j = 0; j < l; j++) {
                 if (cats[j] > cur[j]) {
                     cats[j] = cur[j];
                 }
             }
         }
 
-        for (int i = 0; i <= 26; i++) {
+        for (int i = 0; i < l; i++) {
             while (cats[i] > 0) {
                 res.add(String.valueOf((char) (i + d)));
                 cats[i]--;
             }
+
         }
         return res;
     }
