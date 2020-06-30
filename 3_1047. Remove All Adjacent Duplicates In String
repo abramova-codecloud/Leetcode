@@ -32,3 +32,23 @@ class Solution {
         return S;
     } 
 }
+
+
+// with Stack runtime:142 ms	memory:87.2 MB
+class Solution {
+    public String removeDuplicates(String S) {
+        Stack st = new Stack();
+        for (int i = 0; i < S.length() ; i++) { 
+            if (st.empty()) {
+                st.push(S.substring(i, i + 1));
+                continue;
+            } 
+            if (S.substring(i, i + 1).equals(st.peek())) {
+                st.pop();
+            } else {                
+                st.push(S.substring(i, i + 1));                
+            }
+        }
+        return st.toString().replaceAll("\\[|]|, ", "");
+    } 
+}
