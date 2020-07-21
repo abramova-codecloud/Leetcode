@@ -44,3 +44,33 @@ class Solution {
         return 0;
     }
 }
+
+//чья-то идея:
+class Solution {
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        int[] mas = new int[101];
+        int[] res = new int[nums.length];
+        
+        for (int i = 0; i<nums.length; i++) {
+            mas[nums[i]] = mas[nums[i]] + 1;            
+        }
+ 
+        for (int i = 1; i < mas.length; i++) {           
+            if (mas[i] == 0) {
+                mas[i] = mas[i - 1];
+            } else {
+                mas[i] = mas[i - 1] + mas[i];
+            }                        
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                res[i] = 0;
+            } else {
+                res[i] = mas[nums[i] - 1];
+            }            
+        }
+        
+        return res;
+    }
+}
