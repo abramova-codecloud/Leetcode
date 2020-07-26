@@ -28,3 +28,21 @@ class Solution {
         return prod - sum;
     }
 }
+
+/**
+MY SOLUTION:
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Subtract the Product and Sum of Digits of an Integer.
+Memory Usage: 36 MB, less than 75.68% of Java online submissions for Subtract the Product and Sum of Digits of an Integer.
+*/
+class Solution {
+    public int subtractProductAndSum(int n) {         
+        int sum = 0;
+        int prod = 1;
+        while (n > 0) {
+            sum += n % 10;
+            prod *= n % 10;
+            n = n / 10;
+        }
+        return prod - sum;
+    }
+}
